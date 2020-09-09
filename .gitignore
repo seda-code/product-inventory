@@ -1,0 +1,9 @@
+.vscode/
+.vs/
+obj/
+bin/
+
+__pycache__/
+
+# Sqlite database
+*.db
