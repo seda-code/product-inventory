@@ -26,6 +26,11 @@ namespace Inventory.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddCors(o => o.AddPolicy("AllowCors", builder =>
+            {
+                builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,6 +40,7 @@ namespace Inventory.API
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors("AllowCors");
 
             app.UseHttpsRedirection();
 

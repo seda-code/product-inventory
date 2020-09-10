@@ -7,7 +7,7 @@ using Inventory.API.Models;
 namespace Inventory.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     // https://localhost:5001/api/category
     public class CategoryController
     {

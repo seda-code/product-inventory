@@ -13,7 +13,7 @@ namespace Inventory.API.Controllers
         [HttpGet]
         [Route("{id}")]
         // https://localhost:5001/api/product/1
-        public string Get(string id)
+        public Product Get(string id)
         {
             // TODO: Get product by ID.
 
@@ -25,7 +25,7 @@ namespace Inventory.API.Controllers
 
             // JsonSerializer.Serialize(product)
 
-            return JsonSerializer.Serialize(product);
+            return product;
         }
 
         [HttpGet]
