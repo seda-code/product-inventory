@@ -2,8 +2,7 @@ using System;
 
 namespace Inventory.API.Models
 {
-    public class Category{
-        public string Id { get; set; }
+    public class Category : EntityBase{
         public string Name { get; set; }
     }
 }

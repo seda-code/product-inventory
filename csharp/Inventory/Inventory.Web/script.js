@@ -1,21 +1,21 @@
 const productsContainer = document.getElementById("product-items");
 const addProductButton = document.getElementById("add-product");
-const closeProductWindow = document.getElementById("close");
-const saveProduct = document.getElementById("save");
+const closeWindowButton = document.getElementById("close");
+const saveProductButton = document.getElementById("save");
 
 addProductButton.addEventListener("click", ()=>{
     const productWindow = document.getElementById("product-window");
     productWindow.style.display = "block";
 });
 
-closeProductWindow.addEventListener("click", ()=>{
+closeWindowButton.addEventListener("click", ()=>{
     const productWindow = document.getElementById("product-window");
     productWindow.style.display = "none";
-})
+});
 
-saveProduct.addEventListener("click", ()=>{
-    console.log("Save product");
-})
+saveProductButton.addEventListener("click", ()=>{
+    saveProduct();
+});
 
 
 getProducts();
@@ -37,6 +37,16 @@ async function getProducts() {
     }
 }
 
+async function postData(data){
+    const response = await fetch("https://localhost:5001/api/product", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+}
+
 function addProductItem(item){
     var itemElement = document.createElement("tr");
 
@@ -49,4 +59,21 @@ function addProductItem(item){
         <td>${item.value}</td>`
 
     productsContainer.appendChild(itemElement);
+}
+
+function saveProduct(){
+    const name = document.getElementById("product-name").value;
+    const units = document.getElementById("product-units").value;
+    const category = document.getElementById("product-category").value;
+    const value = document.getElementById("product-value").value;
+
+    const product = {
+        name: name,
+        units: Number(units),
+        category: category,
+        value: Number(value)
+    };
+
+    console.log(product);
+    postData(product);
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using Inventory.API.Models;
+using System.Threading.Tasks;
+using Inventory.API.Services;
 
 namespace Inventory.API.Controllers
 {
@@ -10,22 +12,19 @@ namespace Inventory.API.Controllers
     [Route("api/[controller]")]
     public class ProductController : ControllerBase
     {
+        private readonly IInventoryService inventoryService;
+
+        public ProductController(IInventoryService inventoryService)
+        {
+            this.inventoryService = inventoryService;
+        }
+
         [HttpGet]
         [Route("{id}")]
         // https://localhost:5001/api/product/1
         public Product Get(string id)
         {
-            // TODO: Get product by ID.
-
-            var product = new Product()
-            {
-                Id = Guid.NewGuid().ToString(),
-                Name = "Dummy product"
-            };
-
-            // JsonSerializer.Serialize(product)
-
-            return product;
+            return inventoryService.Get(id);
         }
 
         [HttpGet]
@@ -33,24 +32,16 @@ namespace Inventory.API.Controllers
         // https://localhost:5001/api/product/GetProducts
         public IEnumerable<Product> GetProducts()
         {
-            // TODO: Get a list of products
+            return inventoryService.Get();
+        }
 
-            var products = new[]{new Product(){
-                Id = Guid.NewGuid().ToString(),
-                Name = "Keyboard",
-                Units=10,
-                Category = new Category(){Name = "Hardware"},
-                Value = 20.5f
-            }, new Product(){
-                Id = Guid.NewGuid().ToString(),
-                Name = "Mouse",
-                Units=5,
-                Category = new Category(){Name="Hardware"},
-                Value = 40f
-            }};
+        [HttpPost]
+        public ActionResult<Product> AddProduct([FromBody] string product)
+        {
+            var value = JsonSerializer.Deserialize<Product>(product);
+            //System.Diagnostics.Debug.Write(product.Name);
 
-            return products;
-            // return JsonSerializer.Serialize(products);
+            return CreatedAtAction(nameof(AddProduct), new Product() { Name = "aa" });
         }
     }
 }
