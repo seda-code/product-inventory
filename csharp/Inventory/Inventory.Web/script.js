@@ -7,6 +7,7 @@ addProductButton.addEventListener("click", ()=>{
     const productWindow = document.getElementById("product-window");
     productWindow.style.display = "block";
 
+    clearInfo();
     loadCategories();
 });
 
@@ -17,6 +18,8 @@ closeWindowButton.addEventListener("click", ()=>{
 
 saveProductButton.addEventListener("click", ()=>{
     saveProduct();
+    clearInfo();
+    closeWindowButton.click();
 });
 
 
@@ -54,8 +57,8 @@ async function postData(data){
 
 async function loadCategories(){
     const categories = await getCategories();
-    console.log(categories);
     const categoryList = document.getElementById("category-list");
+    categoryList.innerHTML = "";
 
     for(let x=0; x<categories.length; x++){
         const optionElement = document.createElement("option");
@@ -72,7 +75,6 @@ async function loadCategories(){
 function addProductItem(item){
     var itemElement = document.createElement("tr");
 
-    // itemElement.innerHTML=`<span class='hidden'>"${item.id}"</span><span>"${item.name}"`;
     itemElement.innerHTML=`
         <td class='item-id' title='${item.id}'>${item.id}</td>
         <td>${item.name}</td>
@@ -103,4 +105,10 @@ function saveProduct(){
 
     console.log("Saving..", product);
     postData(product);
+}
+
+function clearInfo(){
+    document.getElementById("product-name").value = "";
+    document.getElementById("product-units").value = "";
+    document.getElementById("product-value").value = "";
 }
