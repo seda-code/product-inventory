@@ -24,7 +24,7 @@ namespace Inventory.API.Controllers
         // https://localhost:5001/api/product/1
         public Product Get(string id)
         {
-            return inventoryService.Get(id);
+            return inventoryService.GetProduct(id);
         }
 
         [HttpGet]
@@ -32,16 +32,15 @@ namespace Inventory.API.Controllers
         // https://localhost:5001/api/product/GetProducts
         public IEnumerable<Product> GetProducts()
         {
-            return inventoryService.Get();
+            return inventoryService.GetProducts();
         }
 
         [HttpPost]
-        public ActionResult<Product> AddProduct([FromBody] string product)
+        public ActionResult<Product> AddProduct([FromBody] Product product)
         {
-            var value = JsonSerializer.Deserialize<Product>(product);
-            //System.Diagnostics.Debug.Write(product.Name);
+            inventoryService.SaveProduct(product);
 
-            return CreatedAtAction(nameof(AddProduct), new Product() { Name = "aa" });
+            return Ok(product);
         }
     }
 }

@@ -7,7 +7,7 @@ namespace Inventory.API.Data
 {
     public class FakeDataRepository : IDataRepository
     {
-        readonly IEnumerable<Product> products;
+        private IList<Product> products;
         readonly IEnumerable<Category> categories;
 
         public FakeDataRepository()
@@ -17,7 +17,7 @@ namespace Inventory.API.Data
                 new Category() { Name = "Sotfware" }
             };
 
-            products = new[]{new Product(){
+            products = new List<Product>{new Product(){
                 Name = "Keyboard",
                 Units=10,
                 Category = categories.Single(x=>x.Name.Equals("Hardware")),
@@ -42,6 +42,20 @@ namespace Inventory.API.Data
         public Product GetProduct(string id)
         {
             return products.FirstOrDefault(x => x.Id.Equals(id));
+        }
+
+        public IEnumerable<Category> GetCategories()
+        {
+            return categories;
+        }
+
+        public Category GetCategory(string id)
+        {
+            return categories.FirstOrDefault(x => x.Id.Equals(id));
+        }
+
+        public void SaveProduct(Product product){
+            products.Add(product);
         }
     }
 }

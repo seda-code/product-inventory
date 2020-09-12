@@ -5,7 +5,11 @@ using Inventory.API.Models;
 namespace Inventory.API.Services
 {
     public interface IInventoryService{
-        IEnumerable<Product> Get();
-        Product Get(string id);
+        IEnumerable<Product> GetProducts();
+        Product GetProduct(string id);
+        IEnumerable<Category> GetCategories();
+        Category GetCategory(string id);
+
+        void SaveProduct(Product product);
     }
 }

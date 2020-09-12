@@ -83,6 +83,11 @@ tr:nth-child(even){
     margin-bottom: 1rem;
 }
 
+.product-info select{
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
 .product-window .toolbar{
     background-color:#9ec862;
     display:flex;

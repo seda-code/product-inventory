@@ -6,6 +6,8 @@ const saveProductButton = document.getElementById("save");
 addProductButton.addEventListener("click", ()=>{
     const productWindow = document.getElementById("product-window");
     productWindow.style.display = "block";
+
+    loadCategories();
 });
 
 closeWindowButton.addEventListener("click", ()=>{
@@ -22,10 +24,10 @@ getProducts();
 
 
 async function getCategories() {
-    const response = await fetch("https://localhost:5001/api/category");
+    const response = await fetch("https://localhost:5001/api/category/GetCategories");
     const categories = await response.json();
 
-    console.log(categories[0]);
+    return categories;
 }
 
 async function getProducts() {
@@ -45,6 +47,26 @@ async function postData(data){
         },
         body: JSON.stringify(data)
     });
+
+    const result = await response.json();
+    console.log("postData response: ", result);
+}
+
+async function loadCategories(){
+    const categories = await getCategories();
+    console.log(categories);
+    const categoryList = document.getElementById("category-list");
+
+    for(let x=0; x<categories.length; x++){
+        const optionElement = document.createElement("option");
+        optionElement.setAttribute("value", categories[x].id);
+        
+        const optionText = document.createTextNode(categories[x].name);
+        optionElement.appendChild(optionText);
+
+        categoryList.appendChild(optionElement);
+    }
+
 }
 
 function addProductItem(item){
@@ -64,16 +86,21 @@ function addProductItem(item){
 function saveProduct(){
     const name = document.getElementById("product-name").value;
     const units = document.getElementById("product-units").value;
-    const category = document.getElementById("product-category").value;
+    const categoryList = document.getElementById("category-list");
+    const categoryValue = categoryList.options[categoryList.selectedIndex].value;
+    const categoryText = categoryList.options[categoryList.selectedIndex].text;
     const value = document.getElementById("product-value").value;
 
     const product = {
         name: name,
         units: Number(units),
-        category: category,
+        category: {
+            id:categoryValue,
+            name: categoryText
+        },
         value: Number(value)
     };
 
-    console.log(product);
+    console.log("Saving..", product);
     postData(product);
 }

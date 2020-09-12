@@ -13,14 +13,28 @@ namespace Inventory.API.Services
         {
             this.dataRepository = dataRepository;
         }
-        public IEnumerable<Product> Get()
+        public IEnumerable<Product> GetProducts()
         {
             return dataRepository.GetProducts();
         }
 
-        public Product Get(string id)
+        public Product GetProduct(string id)
         {
             return dataRepository.GetProduct(id);
+        }
+
+        public IEnumerable<Category> GetCategories()
+        {
+            return dataRepository.GetCategories();
+        }
+
+        public Category GetCategory(string id)
+        {
+            return dataRepository.GetCategory(id);
+        }
+
+        public void SaveProduct(Product product){
+            dataRepository.SaveProduct(product);
         }
     }
 }
