@@ -6,16 +6,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Inventory</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
     <script src="script.js" defer></script>
 </head>
 
 <body>
     <h1>Inventory</h1>
 
-    <div class="product-list">
-        <ul class="product-items" id="product-items">
-            
-        </ul>
+    <div>
+        <div class="controls">
+            <button class="add-product" id="add-product" title="Add new product">
+                <i class="fas fa-plus"></i> Product
+            </button>
+        </div>
+
+        <table>
+            <tbody id="product-items">
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Units</th>
+                    <th>Category</th>
+                    <th>Value/u</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="product-window" id="product-window">
+        <span class="title">New product</span>
+        <div class="product-info">
+            <label>
+                Name</br>
+                <input type="text" name="product-name">
+            </label></br>
+            <label>
+                Units</br>
+                <input type="text" name="product-units">
+            </label></br>
+            <label>
+                Category</br>
+                <input type="text" name="product-category">
+            </label></br>
+            <label>
+                Value per unit</br>
+                <input type="text" name="product-value">
+            </label></br>
+        </div>
+        <div class="toolbar">
+            <button class="save" id="save" title="Save product">
+                <li class="fas fa-save"></li> Save
+            </button>
+            <button class="close" id="close" title="Close window">
+                <li class="fas fa-times"></li> Close
+            </button>
+        </div>
     </div>
 </body>
 

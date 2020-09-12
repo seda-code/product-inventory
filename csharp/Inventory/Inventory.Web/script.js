@@ -1,4 +1,22 @@
 const productsContainer = document.getElementById("product-items");
+const addProductButton = document.getElementById("add-product");
+const closeProductWindow = document.getElementById("close");
+const saveProduct = document.getElementById("save");
+
+addProductButton.addEventListener("click", ()=>{
+    const productWindow = document.getElementById("product-window");
+    productWindow.style.display = "block";
+});
+
+closeProductWindow.addEventListener("click", ()=>{
+    const productWindow = document.getElementById("product-window");
+    productWindow.style.display = "none";
+})
+
+saveProduct.addEventListener("click", ()=>{
+    console.log("Save product");
+})
+
 
 getProducts();
 
@@ -20,9 +38,15 @@ async function getProducts() {
 }
 
 function addProductItem(item){
-    var itemElement = document.createElement("li");
+    var itemElement = document.createElement("tr");
 
-    itemElement.innerHTML=`<span>"${item.id}"</span> | <span>"${item.name}"`;
+    // itemElement.innerHTML=`<span class='hidden'>"${item.id}"</span><span>"${item.name}"`;
+    itemElement.innerHTML=`
+        <td class='item-id' title='${item.id}'>${item.id}</td>
+        <td>${item.name}</td>
+        <td>${item.units}</td>
+        <td>${item.category.name}</td>
+        <td>${item.value}</td>`
 
     productsContainer.appendChild(itemElement);
 }

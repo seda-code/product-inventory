@@ -37,12 +37,18 @@ namespace Inventory.API.Controllers
 
             var products = new[]{new Product(){
                 Id = Guid.NewGuid().ToString(),
-                Name = "Keyboard"
+                Name = "Keyboard",
+                Units=10,
+                Category = new Category(){Name = "Hardware"},
+                Value = 20.5f
             }, new Product(){
                 Id = Guid.NewGuid().ToString(),
-                Name = "Mouse"
+                Name = "Mouse",
+                Units=5,
+                Category = new Category(){Name="Hardware"},
+                Value = 40f
             }};
-            
+
             return products;
             // return JsonSerializer.Serialize(products);
         }
