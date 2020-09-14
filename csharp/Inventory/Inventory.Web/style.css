@@ -52,7 +52,15 @@ tr:nth-child(even){
     color:white;
     cursor: pointer;
     padding:0.5rem 1rem;
-    
+}
+
+.delete-product{
+    background-color: #c8626b;
+    border-radius: 3px;
+    border: none;
+    color:white;
+    cursor: pointer;
+    padding:0.5rem 1rem;
 }
 
 .product-window{

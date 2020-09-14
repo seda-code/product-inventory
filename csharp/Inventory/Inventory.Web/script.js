@@ -22,7 +22,6 @@ saveProductButton.addEventListener("click", ()=>{
     closeWindowButton.click();
 });
 
-
 getProducts();
 
 
@@ -33,13 +32,10 @@ async function getCategories() {
     return categories;
 }
 
-async function getProducts() {
-    const response = await fetch("https://localhost:5001/api/product/GetProducts");
-    const products = await response.json();
-
-    for (let i = 0; i < products.length; i++) {
-        addProductItem(products[i]);
-    }
+async function getProducts(){
+    fetch("https://localhost:5001/api/product/GetProducts")
+        .then(response => response.json())
+        .then(data => loadProducts(data));
 }
 
 async function postData(data){
@@ -53,6 +49,12 @@ async function postData(data){
 
     const result = await response.json();
     console.log("postData response: ", result);
+}
+
+async function deleteData(data){
+    const response = await fetch("https://localhost:5001/api/product/" + data, {
+        method: "DELETE"
+    });
 }
 
 async function loadCategories(){
@@ -69,10 +71,15 @@ async function loadCategories(){
 
         categoryList.appendChild(optionElement);
     }
-
 }
 
-function addProductItem(item){
+function loadProducts(products){
+    for (let i = 0; i < products.length; i++) {
+        addProductRow(products[i]);
+    }
+}
+
+function addProductRow(item){
     var itemElement = document.createElement("tr");
 
     itemElement.innerHTML=`
@@ -80,7 +87,20 @@ function addProductItem(item){
         <td>${item.name}</td>
         <td>${item.units}</td>
         <td>${item.category.name}</td>
-        <td>${item.value}</td>`
+        <td>${item.value}</td>
+        <td>
+            <button class="delete-product" id="delete-product" title="Delete product">
+                <i class="fas fa-trash"></i>
+            </button>
+        </td>`;
+
+        const deleteButton = itemElement.querySelector(".delete-product");
+
+        deleteButton.addEventListener("click", (x)=>{
+            const row = x.target.closest("tr");
+            deleteProduct(row);
+        });
+
 
     productsContainer.appendChild(itemElement);
 }
@@ -105,6 +125,15 @@ function saveProduct(){
 
     console.log("Saving..", product);
     postData(product);
+    addProductItem(product); // Wrong place! Wait for the result from postData in order to get the ID
+}
+
+function deleteProduct(productRow){
+    console.log("Deleting: ", productRow.children[0].textContent);
+    
+    deleteData(productRow.children[0].textContent);
+
+    productRow.parentNode.removeChild(productRow); // Check if there is an error before delete the element
 }
 
 function clearInfo(){

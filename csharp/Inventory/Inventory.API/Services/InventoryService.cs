@@ -36,5 +36,9 @@ namespace Inventory.API.Services
         public void SaveProduct(Product product){
             dataRepository.SaveProduct(product);
         }
+        
+        public void DeleteProduct(string id){
+            dataRepository.DeleteProduct(id);
+        }
     }
 }

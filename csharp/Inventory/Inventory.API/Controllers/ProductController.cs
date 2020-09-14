@@ -42,5 +42,12 @@ namespace Inventory.API.Controllers
 
             return Ok(product);
         }
+
+        [HttpDelete("{id}")]
+        public ActionResult DeleteProduct(string id){
+            inventoryService.DeleteProduct(id);
+
+            return Ok($"Product {id} deleted");
+        }
     }
 }

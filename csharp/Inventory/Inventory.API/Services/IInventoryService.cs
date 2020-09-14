@@ -11,5 +11,6 @@ namespace Inventory.API.Services
         Category GetCategory(string id);
 
         void SaveProduct(Product product);
+        void DeleteProduct(string id);
     }
 }
