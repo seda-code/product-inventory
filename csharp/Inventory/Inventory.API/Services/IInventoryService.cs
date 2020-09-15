@@ -10,7 +10,7 @@ namespace Inventory.API.Services
         IEnumerable<Category> GetCategories();
         Category GetCategory(string id);
 
-        void SaveProduct(Product product);
+        Product SaveProduct(Product product);
         void DeleteProduct(string id);
     }
 }

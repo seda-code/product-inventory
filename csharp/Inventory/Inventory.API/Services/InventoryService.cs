@@ -33,8 +33,8 @@ namespace Inventory.API.Services
             return dataRepository.GetCategory(id);
         }
 
-        public void SaveProduct(Product product){
-            dataRepository.SaveProduct(product);
+        public Product SaveProduct(Product product){
+            return dataRepository.SaveProduct(product);
         }
         
         public void DeleteProduct(string id){

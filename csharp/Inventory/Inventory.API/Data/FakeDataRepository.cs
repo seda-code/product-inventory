@@ -54,9 +54,11 @@ namespace Inventory.API.Data
             return categories.FirstOrDefault(x => x.Id.Equals(id));
         }
 
-        public void SaveProduct(Product product)
+        public Product SaveProduct(Product product)
         {
             products.Add(product);
+
+            return product;
         }
 
         public void DeleteProduct(string id)

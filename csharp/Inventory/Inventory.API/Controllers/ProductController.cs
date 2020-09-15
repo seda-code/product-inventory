@@ -38,9 +38,9 @@ namespace Inventory.API.Controllers
         [HttpPost]
         public ActionResult<Product> AddProduct([FromBody] Product product)
         {
-            inventoryService.SaveProduct(product);
+            var savedProduct = inventoryService.SaveProduct(product);
 
-            return Ok(product);
+            return Ok(savedProduct);
         }
 
         [HttpDelete("{id}")]
