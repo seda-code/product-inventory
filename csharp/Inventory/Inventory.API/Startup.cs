@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Inventory.API.Data;
-using Inventory.API.Services;
+using Inventory.API.Data.Repositories;
+using Inventory.API.Data.StorageProviders;
+using Inventory.API.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,8 +29,11 @@ namespace Inventory.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IDataRepository, FakeDataRepository>();
-            services.AddScoped<IInventoryService, InventoryService>();
+            services.AddSingleton<IStorageProvider, MemoryStorageProvider>();
+            services.AddScoped<IDataRepository<Category>, CategoryRepository>();
+            services.AddScoped<IDataRepository<Product>, ProductRepository>();
+
+            // services.AddScoped<IInventoryService, InventoryService>();
             
             services.AddControllers();
 

@@ -1,16 +1,15 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Inventory.API.Models;
 
-namespace Inventory.API.Data
+namespace Inventory.API.Data.StorageProviders
 {
-    public class FakeDataRepository : IDataRepository
+    public class MemoryStorageProvider : IStorageProvider
     {
-        private IList<Product> products;
-        readonly IEnumerable<Category> categories;
+        IList<Product> products;
+        IList<Category> categories;
 
-        public FakeDataRepository()
+        public MemoryStorageProvider()
         {
             categories = new[]{
                 new Category() { Name = "Hardware" },
@@ -34,6 +33,22 @@ namespace Inventory.API.Data
                 Value = 30f
             }};
         }
+
+        public void InsertProduct(Product product)
+        {
+            products.Add(product);
+        }
+
+        public void DeleteProduct(string id)
+        {
+            var product = products.SingleOrDefault(x => x.Id.Equals(id));
+
+            if (products != null)
+            {
+                products.Remove(product);
+            }
+        }
+
         public IEnumerable<Product> GetProducts()
         {
             return products;
@@ -41,7 +56,7 @@ namespace Inventory.API.Data
 
         public Product GetProduct(string id)
         {
-            return products.FirstOrDefault(x => x.Id.Equals(id));
+            return products.SingleOrDefault(x => x.Id.Equals(id));
         }
 
         public IEnumerable<Category> GetCategories()
@@ -51,20 +66,8 @@ namespace Inventory.API.Data
 
         public Category GetCategory(string id)
         {
-            return categories.FirstOrDefault(x => x.Id.Equals(id));
+            return categories.SingleOrDefault(x => x.Id.Equals(id));
         }
 
-        public Product SaveProduct(Product product)
-        {
-            products.Add(product);
-
-            return product;
-        }
-
-        public void DeleteProduct(string id)
-        {
-            var product = products.FirstOrDefault(x => x.Id.Equals(id));
-            products.Remove(product);
-        }
     }
 }

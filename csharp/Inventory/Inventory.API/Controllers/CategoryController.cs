@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Inventory.API.Models;
-using Inventory.API.Services;
+using Inventory.API.Data.Repositories;
 
 namespace Inventory.API.Controllers
 {
@@ -12,11 +12,11 @@ namespace Inventory.API.Controllers
     // https://localhost:5001/api/category
     public class CategoryController
     {
-        private readonly IInventoryService inventoryService;
+        private readonly IDataRepository<Category> dataRepository;
 
-        public CategoryController(IInventoryService inventoryService)
+        public CategoryController(IDataRepository<Category> dataRepository)
         {
-            this.inventoryService = inventoryService;
+            this.dataRepository = dataRepository;
         }
 
         [HttpGet]
@@ -24,7 +24,7 @@ namespace Inventory.API.Controllers
         // https://localhost:5001/api/category/1
         public Category Get(string id)
         {
-            return inventoryService.GetCategory(id);
+            return dataRepository.Get(id);
         }
 
         [HttpGet]
@@ -32,7 +32,7 @@ namespace Inventory.API.Controllers
         // https://localhost:5001/api/category/GetCategories
         public IEnumerable<Category> GetCategories()
         {
-            return inventoryService.GetCategories();
+            return dataRepository.Get();
         }
 
     }

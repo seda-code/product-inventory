@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using Inventory.API.Models;
 using System.Threading.Tasks;
-using Inventory.API.Services;
+using Inventory.API.Data.Repositories;
 
 namespace Inventory.API.Controllers
 {
@@ -12,11 +12,11 @@ namespace Inventory.API.Controllers
     [Route("api/[controller]")]
     public class ProductController : ControllerBase
     {
-        private readonly IInventoryService inventoryService;
+        private readonly IDataRepository<Product> dataRepository;
 
-        public ProductController(IInventoryService inventoryService)
+        public ProductController(IDataRepository<Product> dataRepository)
         {
-            this.inventoryService = inventoryService;
+            this.dataRepository = dataRepository;
         }
 
         [HttpGet]
@@ -24,7 +24,7 @@ namespace Inventory.API.Controllers
         // https://localhost:5001/api/product/1
         public Product Get(string id)
         {
-            return inventoryService.GetProduct(id);
+            return dataRepository.Get(id);
         }
 
         [HttpGet]
@@ -32,20 +32,20 @@ namespace Inventory.API.Controllers
         // https://localhost:5001/api/product/GetProducts
         public IEnumerable<Product> GetProducts()
         {
-            return inventoryService.GetProducts();
+            return dataRepository.Get();
         }
 
         [HttpPost]
         public ActionResult<Product> AddProduct([FromBody] Product product)
         {
-            var savedProduct = inventoryService.SaveProduct(product);
+            var savedProduct = dataRepository.Insert(product);
 
             return Ok(savedProduct);
         }
 
         [HttpDelete("{id}")]
         public ActionResult DeleteProduct(string id){
-            inventoryService.DeleteProduct(id);
+            dataRepository.Delete(id);
 
             return Ok($"Product {id} deleted");
         }

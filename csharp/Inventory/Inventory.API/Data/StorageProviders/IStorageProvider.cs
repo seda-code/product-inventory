@@ -1,16 +1,16 @@
-using System;
 using System.Collections.Generic;
 using Inventory.API.Models;
 
-namespace Inventory.API.Services
+namespace Inventory.API.Data.StorageProviders
 {
-    public interface IInventoryService{
+    // TODO: In Progress
+
+    public interface IStorageProvider{
+        void InsertProduct(Product product);
+        void DeleteProduct(string id);
         IEnumerable<Product> GetProducts();
         Product GetProduct(string id);
         IEnumerable<Category> GetCategories();
         Category GetCategory(string id);
-
-        Product SaveProduct(Product product);
-        void DeleteProduct(string id);
     }
 }
