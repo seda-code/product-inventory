@@ -5,7 +5,7 @@ Part of the [Multi-language Challenge](https://github.com/davamix/multi-language
 ## Description
 
 - Application which manages different categories of products.
-- Each category of product has its own properties.
+- ~~Each category of product has its own properties.~~
 - The main UI shown a list of products with these properties:
     - Product ID
     - Product Name
