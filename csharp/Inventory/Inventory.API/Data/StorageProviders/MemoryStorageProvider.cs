@@ -49,6 +49,14 @@ namespace Inventory.API.Data.StorageProviders
             }
         }
 
+        public Product UpdateProduct(string id, Product product){
+            var currentProduct = products.Single(x=>x.Id.Equals(id));
+
+            currentProduct.MapFrom(product);
+
+            return currentProduct;
+        }
+
         public IEnumerable<Product> GetProducts()
         {
             return products;

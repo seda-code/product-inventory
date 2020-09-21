@@ -32,5 +32,10 @@ namespace Inventory.API.Data.Repositories
         {
             throw new System.NotImplementedException();
         }
+
+        public Category Update(string id, Category item)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

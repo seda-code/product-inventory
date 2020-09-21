@@ -39,8 +39,18 @@ namespace Inventory.API.Data.Repositories
             }
 
             return item;
+        }
 
-
+        public Product Update(string id, Product item)
+        {
+            try
+            {
+                return storageProvider.UpdateProduct(id, item);
+            }
+            catch
+            {
+                throw new System.Exception();
+            }
         }
     }
 }

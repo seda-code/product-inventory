@@ -2,7 +2,7 @@ using System;
 
 namespace Inventory.API.Models
 {
-    public class EntityBase{
+    public abstract class EntityBase<T>{
         public string Id{get;set;}
 
         public EntityBase() : this(Guid.NewGuid().ToString()){}
@@ -11,5 +11,7 @@ namespace Inventory.API.Models
         {
             Id = id;
         }
+
+        public abstract void MapFrom(T item);
     }
 }

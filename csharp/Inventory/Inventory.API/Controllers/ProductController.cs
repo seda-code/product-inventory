@@ -43,6 +43,14 @@ namespace Inventory.API.Controllers
             return Ok(savedProduct);
         }
 
+        [HttpPut]
+        [Route("{id}")]
+        public ActionResult<Product> UpdateProduct(string id, [FromBody] Product product){
+            var updatedProduct = dataRepository.Update(id, product);
+
+            return Ok(updatedProduct);
+        }
+
         [HttpDelete("{id}")]
         public ActionResult DeleteProduct(string id){
             dataRepository.Delete(id);

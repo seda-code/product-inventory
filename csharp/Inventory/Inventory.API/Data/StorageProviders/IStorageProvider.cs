@@ -8,6 +8,7 @@ namespace Inventory.API.Data.StorageProviders
     public interface IStorageProvider{
         void InsertProduct(Product product);
         void DeleteProduct(string id);
+        Product UpdateProduct(string id, Product product);
         IEnumerable<Product> GetProducts();
         Product GetProduct(string id);
         IEnumerable<Category> GetCategories();
