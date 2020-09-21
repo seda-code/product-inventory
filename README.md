@@ -20,6 +20,8 @@ Part of the [Multi-language Challenge](https://github.com/davamix/multi-language
 ## C# version
 
 - Technologies (TODO)
+    - Front: HTML, CSS, JavaScript
+    - Back: [ASP.NET Core](https://github.com/dotnet/aspnetcore), [xUnit](https://github.com/xunit/xunit), [Moq](https://github.com/moq/moq4)
 
 ## Python version
 
