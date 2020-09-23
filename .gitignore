@@ -4,6 +4,7 @@ obj/
 bin/
 
 __pycache__/
+.pytest_cache/
 
 # Sqlite database
 *.db
