@@ -19,10 +19,13 @@ Part of the [Multi-language Challenge](https://github.com/davamix/multi-language
 
 ## C# version
 
-- Technologies (TODO)
+- Technologies
     - Front: HTML, CSS, JavaScript
     - Back: [ASP.NET Core](https://github.com/dotnet/aspnetcore), [xUnit](https://github.com/xunit/xunit), [Moq](https://github.com/moq/moq4)
 
 ## Python version
 
-- Technologies (TODO)
+- Technologies
+    - Python 3.8.2
+    - [Flask](https://flask.palletsprojects.com/)
+    - [pytest](https://docs.pytest.org/en/stable/)
