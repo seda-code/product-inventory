@@ -33,6 +33,13 @@ namespace Inventory.API
             services.AddScoped<IDataRepository<Category>, CategoryRepository>();
             services.AddScoped<IDataRepository<Product>, ProductRepository>();
 
+
+            // services.AddMvcCore().AddAuthorization().AddNewtonsoftJson();
+
+            // In production, the React files will be served from this directory
+            services.AddSpaStaticFiles(configuration => { configuration.RootPath = "Inventory.Web/"; });
+            
+            
             // services.AddScoped<IInventoryService, InventoryService>();
             
             services.AddControllers();
@@ -52,6 +59,16 @@ namespace Inventory.API
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler("/Error");
+            }
+        
+            //TODO: distinto orden que el ejemplo de MongoDB-->Ojo que el orden importa!!!
+            app.UseHsts();
+            app.UseStaticFiles();
+            app.UseSpaStaticFiles();
+
             app.UseCors("AllowCors");
 
             app.UseHttpsRedirection();
@@ -64,6 +81,8 @@ namespace Inventory.API
             {
                 endpoints.MapControllers();
             });
+
+            app.UseSpa(spa => { spa.Options.SourcePath = "Inventory.Web/"; });// no sé si es valido como lo he puesto
         }
     }
 }
