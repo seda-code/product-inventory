@@ -4,7 +4,7 @@ Pet project to play with different technologies.
 
 ## Run with docker
 
-From <em>src</em> folder execute: 
+From main folder execute: 
 ```
 docker-compose build
 docker-compose up
