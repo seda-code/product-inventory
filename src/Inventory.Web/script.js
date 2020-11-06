@@ -236,4 +236,20 @@ function removeProductFromList(product) {
     product.parentNode.removeChild(product);
 }
 
+// Check for the user name in the url params
+if(window.location.search){
+    let params = new URLSearchParams(window.location.search);
+
+    if(params.has("user")){
+        const signinLink = document.getElementById("sign-in-link");
+        signinLink.style.display = "none";
+
+        const userNameLabel = document.getElementById("user-info-label");
+        userNameLabel.innerHTML = `Hello ${params.get("user")}`;
+        userNameLabel.style.display = "block";
+
+    }
+}
+
+
 loadProducts();
