@@ -1,0 +1,17 @@
+{
+    "name": "aouth.proxy",
+    "version": "1.0.0",
+    "description": "Proxy to send requests to Github",
+    "author": "Me",
+    "main": "proxy.js",
+    "scripts":{
+        "start": "node proxy.js"
+    },
+    "dependencies": {
+        "node-gyp": "7.1.2",
+        "node-fetch":"2.6.1",
+        "axios":"0.20.0",
+        "express":"4.17.1",
+        "cors": "2.8.5"
+    }
+}
