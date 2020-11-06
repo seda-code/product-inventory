@@ -2,14 +2,26 @@
 
 Pet project to play with different technologies.
 
-## Run the backend
+## Run with docker
+
+From <em>src</em> folder execute: 
+```
+docker-compose build
+docker-compose up
+```
+
+Navigate to `localhost`
+
+## Run individuals
+### Backend
 
 From <em>src</em> folder execute: `dotnet run -p Inventory.API`
 
-## Run the frontend
+### Frontend
 
 Open the <em>index.html</em> from <em>Inventory.Web</em> folder
 
-## Tests
+### Tests
 
 From <em>src</em> folder execute: `dotnet test`
+
