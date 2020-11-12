@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.API", "Inventory.API\Inventory.API.csproj", "{F3831B2B-BDAF-4577-BAA4-E28672BD2674}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inventory.API", "Inventory.API\Inventory.API.csproj", "{F3831B2B-BDAF-4577-BAA4-E28672BD2674}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.API.Tests", "Inventory.API.Tests\Inventory.API.Tests.csproj", "{7E779F60-2180-4511-9C05-51996DE9F727}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inventory.API.Tests", "Inventory.API.Tests\Inventory.API.Tests.csproj", "{7E779F60-2180-4511-9C05-51996DE9F727}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +15,9 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
+		SebaDebug|Any CPU = SebaDebug|Any CPU
+		SebaDebug|x64 = SebaDebug|x64
+		SebaDebug|x86 = SebaDebug|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{F3831B2B-BDAF-4577-BAA4-E28672BD2674}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -32,6 +32,12 @@ Global
 		{F3831B2B-BDAF-4577-BAA4-E28672BD2674}.Release|x64.Build.0 = Release|Any CPU
 		{F3831B2B-BDAF-4577-BAA4-E28672BD2674}.Release|x86.ActiveCfg = Release|Any CPU
 		{F3831B2B-BDAF-4577-BAA4-E28672BD2674}.Release|x86.Build.0 = Release|Any CPU
+		{F3831B2B-BDAF-4577-BAA4-E28672BD2674}.SebaDebug|Any CPU.ActiveCfg = SebaDebug|Any CPU
+		{F3831B2B-BDAF-4577-BAA4-E28672BD2674}.SebaDebug|Any CPU.Build.0 = SebaDebug|Any CPU
+		{F3831B2B-BDAF-4577-BAA4-E28672BD2674}.SebaDebug|x64.ActiveCfg = SebaDebug|Any CPU
+		{F3831B2B-BDAF-4577-BAA4-E28672BD2674}.SebaDebug|x64.Build.0 = SebaDebug|Any CPU
+		{F3831B2B-BDAF-4577-BAA4-E28672BD2674}.SebaDebug|x86.ActiveCfg = SebaDebug|Any CPU
+		{F3831B2B-BDAF-4577-BAA4-E28672BD2674}.SebaDebug|x86.Build.0 = SebaDebug|Any CPU
 		{7E779F60-2180-4511-9C05-51996DE9F727}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7E779F60-2180-4511-9C05-51996DE9F727}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E779F60-2180-4511-9C05-51996DE9F727}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -44,5 +50,17 @@ Global
 		{7E779F60-2180-4511-9C05-51996DE9F727}.Release|x64.Build.0 = Release|Any CPU
 		{7E779F60-2180-4511-9C05-51996DE9F727}.Release|x86.ActiveCfg = Release|Any CPU
 		{7E779F60-2180-4511-9C05-51996DE9F727}.Release|x86.Build.0 = Release|Any CPU
+		{7E779F60-2180-4511-9C05-51996DE9F727}.SebaDebug|Any CPU.ActiveCfg = SebaDebug|Any CPU
+		{7E779F60-2180-4511-9C05-51996DE9F727}.SebaDebug|Any CPU.Build.0 = SebaDebug|Any CPU
+		{7E779F60-2180-4511-9C05-51996DE9F727}.SebaDebug|x64.ActiveCfg = SebaDebug|Any CPU
+		{7E779F60-2180-4511-9C05-51996DE9F727}.SebaDebug|x64.Build.0 = SebaDebug|Any CPU
+		{7E779F60-2180-4511-9C05-51996DE9F727}.SebaDebug|x86.ActiveCfg = SebaDebug|Any CPU
+		{7E779F60-2180-4511-9C05-51996DE9F727}.SebaDebug|x86.Build.0 = SebaDebug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {82E24AFD-13EB-4E5A-B8B5-ABC46201EDCD}
 	EndGlobalSection
 EndGlobal

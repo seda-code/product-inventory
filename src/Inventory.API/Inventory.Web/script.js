@@ -3,9 +3,22 @@ const addProductButton = document.getElementById("add-product");
 const closeWindowButton = document.getElementById("close");
 const saveProductButton = document.getElementById("save");
 const updateProductButton = document.getElementById("update");
+const loginButton = document.getElementById("login");
 
 // EVENTS 
+loginButton.addEventListener("click", () => {
+    //debugger;
+    //loginUser();
+    console.log(">>>>login<<<<");
+    // const clientId ="2f4503b45f90382a1c82";
+    // const url = "https://github.com/login/oauth/authorize?client_id=2f4503b45f90382a1c82&login=sebainones";
+    //     getRequestTo(url)
+    // .then(response => response.json())
+    // .then(data => console.log(data));
+});
+
 addProductButton.addEventListener("click", () => {
+    debugger;
     openProductWindow();
 });
 
@@ -114,6 +127,7 @@ function createProductRow(item) {
 }
 
 async function openProductWindow(product = {}) {
+    console.log("openProductWindow");
     const productWindow = document.getElementById("product-window");
     productWindow.style.display = "block";
     document.getElementById("product-name").focus();
@@ -156,6 +170,15 @@ async function addCategoriesToList(categories) {
 
         categoryList.appendChild(optionElement);
     }
+}
+
+function loginUser() {
+    console.log("login prod-inventory");
+    const clientId ="2f4503b45f90382a1c82";
+    const url = "https://github.com/login/oauth/authorize?client_id=2f4503b45f90382a1c82&login=sebainones";
+        getRequestTo(url)
+    .then(response => response.json())
+    .then(data => addProdutsToList(data));
 }
 
 function saveProduct() {
