@@ -1,34 +1,33 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Inventory.API.Data;
 using Inventory.API.Data.Repositories;
 using Inventory.API.Data.StorageProviders;
 using Inventory.API.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace Inventory.API
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            Configuration = configuration ?? throw new System.ArgumentNullException(nameof(configuration));
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            // 1. Read app settings from AppSettings key from appsettings.json file
+            var endpoints = Configuration.GetSection("EndPoints");
+            var appSettings = Configuration.GetSection("AppSettings");
+            // 2. Register it with a strongly typed object to access it using dependency injection 
+            services.Configure<Endpoints>(endpoints);
+            services.Configure<AppSettings>(appSettings);
+
             services.AddSingleton<IStorageProvider, MemoryStorageProvider>();
             services.AddScoped<IDataRepository<Category>, CategoryRepository>();
             services.AddScoped<IDataRepository<Product>, ProductRepository>();
@@ -38,10 +37,10 @@ namespace Inventory.API
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration => { configuration.RootPath = "Inventory.Web/"; });
-            
-            
+
+
             // services.AddScoped<IInventoryService, InventoryService>();
-            
+
             services.AddControllers();
 
             services.AddCors(o => o.AddPolicy("AllowCors", builder =>
@@ -49,7 +48,7 @@ namespace Inventory.API
                 builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
             }));
 
-            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,13 +62,14 @@ namespace Inventory.API
             {
                 app.UseExceptionHandler("/Error");
             }
-        
+
+            app.UseCors("AllowCors");
+            app.UseAuthentication();
+
             //TODO: distinto orden que el ejemplo de MongoDB-->Ojo que el orden importa!!!
             app.UseHsts();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
-
-            app.UseCors("AllowCors");
 
             app.UseHttpsRedirection();
 
