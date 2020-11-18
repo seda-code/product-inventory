@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -14,8 +14,8 @@
     <h1>Inventory</h1>
 
     <div>
-        <div class="controls">                        
-            <button class="add-product" id="login" title="Login"><a href="https://github.com/login/oauth/authorize?client_id=2f4503b45f90382a1c82&login=sebainones">Logins</a></button>
+        <div class="controls">
+            <button class="add-product" id="login" title="Login"><a href="https://localhost:5001/api/token/login">Logins</a></button>
             <button class="add-product" id="add-product" title="Add new product">
                 <i class="fas fa-plus"></i> Product
             </button>
@@ -40,7 +40,7 @@
     <div class="product-window" id="product-window">
         <span class="title">New product</span>
         <div class="product-info">
-            <input type="hidden" name="product-id" id="product-id"/>
+            <input type="hidden" name="product-id" id="product-id" />
             <label>
                 Name</br>
                 <input type="text" name="product-name" id="product-name">

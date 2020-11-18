@@ -10,13 +10,12 @@ using Inventory.API.Models;
 using RestSharp;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using RestSharp.Authenticators;
 
 namespace Inventory.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    // https://localhost:5001/api/category
+    // https://localhost:5001/api/token
     public class TokenController
     {
         private readonly ILogger<TokenController> logger;
@@ -43,8 +42,22 @@ namespace Inventory.API.Controllers
         }
 
         [HttpGet]
-        // [Route("{code}")]
-        // https://localhost:5001/api/category/1
+        [Route("[action]")]
+        public RedirectResult Login()
+        {
+            try
+            {
+                httpClient.DefaultRequestHeaders.Accept.Clear();
+                return new RedirectResult(@"https://github.com/login/oauth/authorize?client_id=" + appsettings.ClientId);
+            }
+            catch (Exception exception)
+            {
+                logger.LogError(exception.Message, null);
+                throw;
+            }
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Get([FromQuery] string code)
         {
             User someResult = default;
@@ -62,7 +75,6 @@ namespace Inventory.API.Controllers
                 throw;
             }
         }
-
 
         private async Task<User> GetAuthorizedQuery(string accessToken)
         {
